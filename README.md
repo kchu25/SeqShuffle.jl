@@ -23,6 +23,15 @@ seq_shuffle(str; k=2)
 seq_shuffle(str; k=3)
 > "CAGCCAGGCCGCACTGCCCCTCGCC"
 
+# k=1 is just the ordinary shuffle
+seq_shuffle(str; k=1)
+> "CGTTACCGCGCGGCCCACCCAGCCC"
+
+# The shuffling is not restricted to DNA alphabets; other alphabets
+# works too.
+seq_shuffle("ababacraggrac"; k=2)
+> "ababaggracrac"
+
 # shuffle every string in the fasta file such that it perserves the 
 # frequency of 2-mers in each string; save the result as a new fasta 
 # file output. Input and output are absolute filepaths as strings.     
@@ -30,5 +39,6 @@ seq_shuffle(str; k=3)
 shuffle_fasta(fasta_location::String, 
                 fasta_output_location::String;
                 k=2, seed::Union{Nothing, Int}=1234)
+                
 
 ```
