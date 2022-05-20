@@ -4,10 +4,10 @@ str2code(s::String) = Int8.(collect(s));
 # convert ASCII code to string
 code2str(c::Vector{Int8}) = String(UInt8.(c));
 
-function seq_shuffle(seq::String; k=2, seed_num=nothing)
+function seq_shuffle(seq::String; k=2, seed=nothing)
     @assert k ≥ 1 "k must be larger than or equal to 1"
 
-    !isnothing(seed_num) && Random.seed!(seed_num);
+    !isnothing(seed) && Random.seed!(seed);
 
     # convert the string to ASCII array
     arr = str2code(seq);
@@ -15,35 +15,34 @@ function seq_shuffle(seq::String; k=2, seed_num=nothing)
         return code2str(Random.shuffle(arr));
     else
         arr_shortmers = fill(Int8(-1),(length(arr), k-1));
-        for i = 1:(k-1)
-            arr_shortmers[1:(size(arr,1)-i+1),i] = arr[i:end];
+        @inbounds for i = 1:(k-1)
+            arr_shortmers[1:(size(arr,1)-i+1),i] = @view arr[i:end];
         end
-        shortmers = sortslices(unique(arr_shortmers, dims=1), dims=1);        
-        tokens = vcat([findall(x->x==e, eachrow(shortmers)) 
+        shortmers = sortslices(unique(arr_shortmers, dims=1), dims=1);   
+        tokens = vcat([findall(x->x==e,  eachrow(shortmers)) 
                         for e in eachrow(arr_shortmers)]...);
 
         shuf_next_inds = Vector{Vector{Int}}();
-        for token = 1:size(shortmers,1)
+        @inbounds for token = 1:size(shortmers,1)
             inds = findall(tokens .== token);
             push!(shuf_next_inds, inds .+ 1);
         end
         
-        for t = 1:size(shortmers,1)
+        @inbounds for t = 1:size(shortmers,1)
             inds = [i for i = 1:length(shuf_next_inds[t])];
-            inds[1:end-1] = Random.shuffle(@view inds[1:end-1]);  # Keep last index same
+            inds[1:end-1] = Random.shuffle(@view inds[1:end-1]);  
             shuf_next_inds[t] = shuf_next_inds[t][inds];
         end
 
         counters = ones(Int, size(shortmers,1));
         
-        # build the resulting array
         ind = 1;
         result = copy(tokens);
-        for j = 2:length(tokens)
-            t = tokens[ind];
-            ind = shuf_next_inds[t][counters[t]];
+        @inbounds for j = 2:length(tokens)
+            t = tokens[ind]::Int;
+            ind = shuf_next_inds[t][counters[t]]::Int;
             counters[t] += 1;
-            result[j] = tokens[ind];
+            result[j] = tokens[ind]::Int;
         end
         shuffled_arr = shortmers[result,1];
         return code2str(shuffled_arr);
