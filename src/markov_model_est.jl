@@ -2,6 +2,7 @@
 all_dna_pairs = join.(collect(permutations("ACGT", 2)));
 
 alphabets = ('A','C','G','T');
+alphabets_pos = Dict('A'=>1, 'C'=>2, 'G'=>3, 'T'=>4);
 pair_pos = Dict("AA"=>(1,1), "AC"=>(1,2), "AG"=>(1,3), "AT"=>(1,4),
                 "CA"=>(2,1), "CC"=>(2,2), "CG"=>(2,3), "CT"=>(2,4),
                 "GA"=>(3,1), "GC"=>(3,2), "GG"=>(3,3), "GT"=>(3,4),
@@ -56,3 +57,21 @@ function est_1st_order_markov_bg(vec_str::Vector{String}; laplace=1, F=FloatType
     markov_mat = markov_mat ./ sum(markov_mat, dims=2);
     return acgt_freq, markov_mat
 end
+
+function assign_bg_prob(vec_str::Vector{String}, markov_mat, acgt_freq)
+    # assumes all strings are of the same length
+    bg_mat = Matrix{F}(undef, (length(vec_str), length(vec_str[1])));
+    for (ind_v, v) in enumerate(vec_str)
+        for (ind_a, a) in enumerate(v)
+            if ind_a == 1 
+                bg_mat[ind_v, 1] = acgt_freq[alphabets_pos[a]];
+            else
+                pos = pair_pos[@view v[ind_a-1:ind_a]];
+                bg_mat[ind_v, ind_a] = markov_mat[pos[1], pos[2]];
+            end
+        end
+    end
+    return bg_mat
+end
+
+# bg_prob = assign_bg_prob(vec_str, markov_mat, acgt_freq);

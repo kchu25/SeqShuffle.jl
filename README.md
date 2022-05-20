@@ -9,4 +9,19 @@
 
 # Usage
 
+```julia
 
+    # an example string
+    str = "CAGCCCCGCAGGCCACTGCCTCGCC";
+
+    # shuffle the string such that it preserves the frequency of 2-mers
+    seq_shuffle(str; k=2)
+    > "CTGCCAGCCCCCAGCGCACGGCCTC"
+
+    # shuffle the string such that it preserves the frequency of 3-mers
+    seq_shuffle(str; k=3)
+    > "CAGCCAGGCCGCACTGCCCCTCGCC"
+
+    # shuffle every string in the fasta file such that it perserves the frequency of 2-mers in each string; save the result as a new fasta file output. Input and output are absolute filepaths as strings.     
+    shuffle_fasta(fasta_location::String, fasta_output_location::String)
+```
