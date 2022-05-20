@@ -28,7 +28,7 @@ seq_shuffle(str; k=1)
 > "CGTTACCGCGCGGCCCACCCAGCCC"
 
 # The shuffling is not restricted to DNA alphabets; other alphabets
-# works too.
+# works as well
 seq_shuffle("ababacraggrac"; k=2)
 > "ababaggracrac"
 
