@@ -18,7 +18,8 @@ function seq_shuffle(seq::String; k=2, seed_num=nothing)
             arr_shortmers[1:(size(arr,1)-i+1),i] = arr[i:end];
         end
         shortmers = sortslices(unique(arr_shortmers, dims=1), dims=1);        
-        tokens = vcat([findall(x->x==e, eachrow(shortmers)) for e in eachrow(arr_shortmers)]...);
+        tokens = vcat([findall(x->x==e, eachrow(shortmers)) 
+                        for e in eachrow(arr_shortmers)]...);
 
         shuf_next_inds = Vector{Vector{Int}}();
         for token = 1:size(shortmers,1)
@@ -31,7 +32,6 @@ function seq_shuffle(seq::String; k=2, seed_num=nothing)
             inds[1:end-1] = Random.shuffle(@view inds[1:end-1]);  # Keep last index same
             shuf_next_inds[t] = shuf_next_inds[t][inds];
         end
-        shuf_next_inds
 
         counters = ones(Int, size(shortmers,1));
         
