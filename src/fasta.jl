@@ -26,9 +26,18 @@ Input:
 Output:
     A vector of strings that corresponds to the strings in the fasta file. All strings are in uppercase.
 """
-function read_fasta(filepath::String, max_entries=1000000)::Vector{String}
+function read_fasta(filepath::String; max_entries=1000000)::Vector{String}
     #= read a fasta file =#
     dna_reads = reading(filepath, max_entries);   
     # convert all DNA seqeunce to uppercase
     return [uppercase(i) for i in dna_reads]
+end
+
+function save_fasta(vec_str::Vector{String}, target_filename::String)
+    open(target_filename,"w") do file
+        for (ind,s) in enumerate(vec_str)
+            write(file, string(">sequence_", string(ind),"\n"));
+            write(file, string(s,"\n"))
+        end
+    end
 end

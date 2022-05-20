@@ -4,7 +4,18 @@ str2code(s::String) = Int8.(collect(s));
 # convert ASCII code to string
 code2str(c::Vector{Int8}) = String(UInt8.(c));
 
+"""
+seq_shuffle(seq::String; k=2, seed=nothing)
+Shuffle the input string such that it preserves the frequency of k-max_entries
+
+Input:
+* `seq`: A string
+* `k`: interger; k-mer frequency
+Output:
+    A shuffled version of the string `seq`
+"""
 function seq_shuffle(seq::String; k=2, seed=nothing)
+    @assert isascii(seq) "Must be a ascii string"
     @assert k ≥ 1 "k must be larger than or equal to 1"
 
     !isnothing(seed) && Random.seed!(seed);
