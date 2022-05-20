@@ -1,13 +1,3 @@
-
-all_dna_pairs = join.(collect(permutations("ACGT", 2)));
-
-alphabets = ('A','C','G','T');
-alphabets_pos = Dict('A'=>1, 'C'=>2, 'G'=>3, 'T'=>4);
-pair_pos = Dict("AA"=>(1,1), "AC"=>(1,2), "AG"=>(1,3), "AT"=>(1,4),
-                "CA"=>(2,1), "CC"=>(2,2), "CG"=>(2,3), "CT"=>(2,4),
-                "GA"=>(3,1), "GC"=>(3,2), "GG"=>(3,3), "GT"=>(3,4),
-                "TA"=>(4,1), "TC"=>(4,2), "TG"=>(4,3), "TT"=>(4,4));                
-
 """
     est_1st_order_markov_bg(vec_str::Vector{Sting}; laplace=1; F=FloatType)
 

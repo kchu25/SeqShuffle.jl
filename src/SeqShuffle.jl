@@ -1,6 +1,5 @@
 module SeqShuffle
 
-using Combinatorics
 import Random 
 
 export seq_shuffle,
