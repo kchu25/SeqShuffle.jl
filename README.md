@@ -10,6 +10,8 @@ Shuffle a string such that it preserves the k-mer frequency in the string (k $\g
 
 ```julia
 
+using SeqShuffle
+
 # an example string
 str = "CAGCCCCGCAGGCCACTGCCTCGCC";
 
@@ -28,5 +30,5 @@ seq_shuffle(str; k=3)
 shuffle_fasta(fasta_location::String, 
                 fasta_output_location::String;
                 k=2, seed::Union{Nothing, Int}=1234)
-                
+
 ```
