@@ -10,22 +10,23 @@ Shuffle a string such that it preserves the k-mer frequency in the string (k $\g
 
 ```julia
 
-    # an example string
-    str = "CAGCCCCGCAGGCCACTGCCTCGCC";
+# an example string
+str = "CAGCCCCGCAGGCCACTGCCTCGCC";
 
-    # shuffle the string such that it preserves the frequency of 2-mers
-    seq_shuffle(str; k=2)
-    > "CTGCCAGCCCCCAGCGCACGGCCTC"
+# shuffle the string such that it preserves the frequency of 2-mers
+seq_shuffle(str; k=2)
+> "CTGCCAGCCCCCAGCGCACGGCCTC"
 
-    # shuffle the string such that it preserves the frequency of 3-mers
-    seq_shuffle(str; k=3)
-    > "CAGCCAGGCCGCACTGCCCCTCGCC"
+# shuffle the string such that it preserves the frequency of 3-mers
+seq_shuffle(str; k=3)
+> "CAGCCAGGCCGCACTGCCCCTCGCC"
 
-    # shuffle every string in the fasta file such that it perserves the 
-    # frequency of 2-mers in each string; save the result as a new fasta 
-    # file output. Input and output are absolute filepaths as strings.     
-    # (optional) Use a fixed seed for reproducibility.
-    shuffle_fasta(fasta_location::String, 
-                  fasta_output_location::String;
-                  k=2, seed::Union{Nothing, Int}=1234)
+# shuffle every string in the fasta file such that it perserves the 
+# frequency of 2-mers in each string; save the result as a new fasta 
+# file output. Input and output are absolute filepaths as strings.     
+# (optional) Use a fixed seed for reproducibility.
+shuffle_fasta(fasta_location::String, 
+                fasta_output_location::String;
+                k=2, seed::Union{Nothing, Int}=1234)
+                
 ```
