@@ -3,6 +3,9 @@ uuid = "5ea955a8-74dc-49b5-be65-6ee01fc504f7"
 authors = ["kchu25 <skchu@wustl.edu> and contributors"]
 version = "0.1.0"
 
+[deps]
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+
 [compat]
 julia = "1"
 
