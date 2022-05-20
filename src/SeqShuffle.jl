@@ -1,7 +1,10 @@
 module SeqShuffle
 
-# Write your package code here.
+import Random 
 
+export seq_shuffle
+
+include("shuffle.jl")
 
 
 end
