@@ -1,12 +1,17 @@
 module SeqShuffle
 
+using Combinatorics
 import Random 
 
 export seq_shuffle,
-       shuffle_fasta 
+       shuffle_fasta,
+       est_1st_order_markov_bg
 
+include("constants.jl")
 include("shuffle.jl")
 include("fasta.jl")
+include("encodings.jl")
+include("markov_model_est.jl")
 
 """
     shuffle_fasta(input_fasta_location::String, 
@@ -25,8 +30,7 @@ Input:
 * `max_entries`: The max number of entries to take from the fasta file (from 1 to max_entries).
 
 Output:
-    An output fasta file specified as `fasta_output_location`. 
-    It contains the shuffled version of the original fasta file. 
+    A fasta file that contains the shuffled version of the input fasta file. 
 
 """
 function shuffle_fasta(fasta_location::String, 

@@ -42,3 +42,8 @@ function save_fasta(vec_str::Vector{String}, target_filename::String)
         end
     end
 end
+
+
+# JASPAR_c2h2 = "/home/shane/Desktop/Motif_package_tests/expr_data/JASPAR/c2h2/MA0095.2.sites"
+# vec_str=read_fasta(JASPAR_c2h2);
+# d=data_2_dummy(vec_str)
