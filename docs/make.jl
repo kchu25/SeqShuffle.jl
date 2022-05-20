@@ -8,7 +8,6 @@ makedocs(
     sitename = "SeqShuffle",
     repo="https://github.com/kchu25/SeqShuffle.jl/blob/{commit}{path}#{line}",
     authors="Shane Kuei Hsien Chu (skchu@wustl.edu)",
-    sitename="SeqShuffle.jl",
     format = Documenter.HTML(prettyurls=get(ENV, "CI", "false") == "true",
                              canonical="https://kchu25.github.io/SeqShuffle.jl",
                              assets=String[],
