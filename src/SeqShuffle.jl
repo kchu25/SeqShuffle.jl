@@ -2,7 +2,8 @@ module SeqShuffle
 
 import Random 
 
-export seq_shuffle
+export seq_shuffle,
+       shuffle_fasta 
 
 include("shuffle.jl")
 include("fasta.jl")

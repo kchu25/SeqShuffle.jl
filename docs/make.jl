@@ -1,5 +1,5 @@
-using Documenter
 using SeqShuffle
+using Documenter
 
 makedocs(
     sitename = "SeqShuffle",
@@ -11,5 +11,6 @@ makedocs(
 # See "Hosting Documentation" and deploydocs() in the Documenter manual
 # for more information.
 deploydocs(
-    repo = "github.com/kchu25/SeqShuffle.jl.git"
+    repo = "github.com/kchu25/SeqShuffle.jl",
+    devbranch="main"
 )
