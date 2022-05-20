@@ -3,7 +3,7 @@ using Documenter
 
 DocMeta.setdocmeta!(SeqShuffle, :DocTestSetup, :(using SeqShuffle); recursive=true)
 
-makedocs(
+makedocs(;
     modules = [SeqShuffle],
     sitename = "SeqShuffle",
     repo="https://github.com/kchu25/SeqShuffle.jl/blob/{commit}{path}#{line}",
