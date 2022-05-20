@@ -17,7 +17,8 @@ function reading(filepath::String, max_entries=max_num_read_fasta)
 end
 
 """
-read_fasta(filepath;  max_entries=1000000)
+    read_fasta(filepath;  max_entries=1000000)
+
 Read a fasta file into a vector of strings
 
 Input:

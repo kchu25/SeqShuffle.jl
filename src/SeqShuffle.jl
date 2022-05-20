@@ -9,7 +9,7 @@ include("shuffle.jl")
 include("fasta.jl")
 
 """
-shuffle_fasta(input_fasta_location::String, 
+    shuffle_fasta(input_fasta_location::String, 
               fasta_output_location::String;
               k::Int=2, seed=nothing,
               max_entries=1000000)
