@@ -5,7 +5,8 @@ str2code(s::String) = Int8.(collect(s));
 code2str(c::Vector{Int8}) = String(UInt8.(c));
 
 function seq_shuffle(seq::String; k=2, seed_num=nothing)
-    
+    @assert k ≥ 1 "k must be larger than or equal to 1"
+
     !isnothing(seed_num) && Random.seed!(seed_num);
 
     # convert the string to ASCII array
