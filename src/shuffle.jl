@@ -6,7 +6,7 @@ code2str(c::Vector{Int8}) = String(UInt8.(c));
 
 """
     seq_shuffle(seq::String; k=2, seed=nothing)
-Shuffle the input string such that it preserves the frequency of k-max_entries
+Shuffle the input string such that it preserves the frequency of k-mers
 
 Input:
 * `seq`: A string
