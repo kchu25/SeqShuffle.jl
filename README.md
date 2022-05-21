@@ -4,7 +4,11 @@
 [![Build Status](https://github.com/kchu25/SeqShuffle.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/kchu25/SeqShuffle.jl/actions/workflows/CI.yml?query=branch%3Amain)
 [![Coverage](https://codecov.io/gh/kchu25/SeqShuffle.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/kchu25/SeqShuffle.jl)
 
+
+
 Shuffle a string such that it preserves the k-mer frequency in the string (k $\geq$ 1).
+
+This is currectly in the process of adding itself into the Julia registry. Should be available in a few days.
 
 # Usage
 
