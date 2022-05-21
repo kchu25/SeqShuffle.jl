@@ -21,18 +21,27 @@ function seq_shuffle(seq::String; k=2, seed=nothing)
     !isnothing(seed) && Random.seed!(seed);
 
     # convert the string to ASCII array
-    arr = str2code(seq);
+    
+    arr = str2code(seq); 
     if k == 1
         return code2str(Random.shuffle(arr));
-    else
+    else        
         arr_shortmers = fill(Int8(-1),(length(arr), k-1));
         @inbounds for i = 1:(k-1)
             arr_shortmers[1:(size(arr,1)-i+1),i] = @view arr[i:end];
         end
+        
         shortmers = sortslices(unique(arr_shortmers, dims=1), dims=1);   
-        tokens = vcat([findall(x->x==e,  eachrow(shortmers)) 
-                        for e in eachrow(arr_shortmers)]...);
 
+        tokens = Int[]
+        for i = 1:size(arr_shortmers,1)
+            for j = 1:size(shortmers,1)
+                if all((@view arr_shortmers[i,:]) .== (@view shortmers[j,:])) 
+                    push!(tokens, j);
+                end
+            end
+        end
+        
         shuf_next_inds = Vector{Vector{Int}}();
         @inbounds for token = 1:size(shortmers,1)
             inds = findall(tokens .== token);
@@ -56,6 +65,10 @@ function seq_shuffle(seq::String; k=2, seed=nothing)
             result[j] = tokens[ind]::Int;
         end
         shuffled_arr = shortmers[result,1];
+        println("")
+    
         return code2str(shuffled_arr);
     end
 end
+
+
