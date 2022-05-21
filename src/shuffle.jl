@@ -11,8 +11,9 @@ Shuffle the input string such that it preserves the frequency of k-mers
 Input:
 * `seq`: A string
 * `k`: interger; k-mer frequency
+* `seed`: (integer) seed for random number generation
 Output:
-    A shuffled version of the string `seq`
+    A shuffled version of the input string `seq`
 """
 function seq_shuffle(seq::String; k=2, seed=nothing)
     @assert isascii(seq) "Must be a ascii string"
@@ -20,8 +21,6 @@ function seq_shuffle(seq::String; k=2, seed=nothing)
 
     !isnothing(seed) && Random.seed!(seed);
 
-    # convert the string to ASCII array
-    
     arr = str2code(seq); 
     if k == 1
         return code2str(Random.shuffle(arr));
@@ -33,8 +32,8 @@ function seq_shuffle(seq::String; k=2, seed=nothing)
         
         shortmers = sortslices(unique(arr_shortmers, dims=1), dims=1);   
 
-        tokens = Int[]
-        for i = 1:size(arr_shortmers,1)
+        tokens = Int[];
+        @inbounds for i = 1:size(arr_shortmers,1)
             for j = 1:size(shortmers,1)
                 if all((@view arr_shortmers[i,:]) .== (@view shortmers[j,:])) 
                     push!(tokens, j);
