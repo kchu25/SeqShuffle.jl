@@ -65,7 +65,6 @@ function seq_shuffle(seq::String; k=2, seed=nothing)
             result[j] = tokens[ind]::Int;
         end
         shuffled_arr = shortmers[result,1];
-        println("")
     
         return code2str(shuffled_arr);
     end
