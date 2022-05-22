@@ -36,6 +36,14 @@ seq_shuffle(str; k=1)
 seq_shuffle("ababacraggrac"; k=2)
 > "ababaggracrac"
 
+# of course, you can use the dot syntax in Julia to shuffle every string in the vector
+vec_str = ["GCCCCGCAGGCCACTG", "CGCAGGCCTG", "CGTTTTCGCCTCGAAAAG"];
+seq_shuffle.(vec_str; k=2)
+> 3-element Vector{String}:
+  "GCCCCCGCAGGCACTG"
+  "CGCCAGGCTG"
+  "CCTCGAAAAGTTTTCGCG"
+
 # shuffle every string in the fasta file such that it perserves the 
 # frequency of 2-mers in each string; save the result as a new fasta 
 # file output. Input and output are absolute filepaths as strings.     
