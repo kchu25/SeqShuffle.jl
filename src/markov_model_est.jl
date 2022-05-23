@@ -48,7 +48,11 @@ function est_1st_order_markov_bg(vec_str::Vector{String}; laplace=1, F=FloatType
     return acgt_freq, markov_mat
 end
 
-function assign_bg_prob(vec_str::Vector{String}, markov_mat, acgt_freq)
+function assign_bg_prob(vec_str::Vector{String}, 
+                        markov_mat, 
+                        acgt_freq; 
+                        F=FloatType)
+    @assert F <: Real "F must be floating point type"                        
     # assumes all strings are of the same length
     bg_mat = Matrix{F}(undef, (length(vec_str), length(vec_str[1])));
     for (ind_v, v) in enumerate(vec_str)
