@@ -1,7 +1,7 @@
 name = "SeqShuffle"
 uuid = "5ea955a8-74dc-49b5-be65-6ee01fc504f7"
 authors = ["kchu25 <skchu@wustl.edu> and contributors"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 DocumenterTools = "35a29f4d-8980-5a13-9543-d66fff28ecb8"
