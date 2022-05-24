@@ -8,7 +8,12 @@
 
 Shuffle a string such that it preserves the k-mer frequency in the string (k $\geq$ 1).
 
-This is currectly in the process of adding itself into the Julia registry. Should be available in a few days.
+
+# Installation
+To install SeqShuffle.jl use Julia's package manager:
+```
+pkg> add SeqShuffle
+```
 
 # Usage
 
