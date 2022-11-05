@@ -4,6 +4,7 @@ import Random
 
 export seq_shuffle,
        shuffle_fasta,
+       assign_bg_prob,
        est_1st_order_markov_bg
 
 include("constants.jl")

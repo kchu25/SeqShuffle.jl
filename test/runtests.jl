@@ -34,4 +34,14 @@ using Test
             @test d == d_s
         end
     end
+
+    # strs = [randstring("ACGT", 110)];
+    # acgt_freq, markov = est_1st_order_markov_bg(strs)
+    # size(SeqShuffle.assign_bg_prob(strs, markov, acgt_freq),2) == 110;
+
+    # str = uppercase("ggcccgggcgctggccgcagcgcgagtgcgtccgtgcgactcttccctgcGTCCCTCCCCTccggggcgggttctagaggtgcgcgtcatcctgcagcaataggcgtggcc")
+    # acgt_freq, markov = est_1st_order_markov_bg([str]);
+    # SeqShuffle.assign_bg_prob(strs, markov, acgt_freq)
+
+
 end
