@@ -4,7 +4,7 @@ function reading(filepath::String, max_entries=max_num_read_fasta)
     # process the fasta file to get the DNA part
     # rid of sequences that contains "n"
     dna_reads = Vector{String}();
-    for i in split(reads, '>')
+    @inbounds for i in split(reads, '>')
         if !isempty(i)
             this_read = join(split(i, "\n")[2:end]);        
             if !occursin("N", this_read) && !occursin("n", this_read)

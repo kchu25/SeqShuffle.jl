@@ -33,8 +33,8 @@ function seq_shuffle(seq::String; k=2, seed=nothing)
         shortmers = sortslices(unique(arr_shortmers, dims=1), dims=1);   
 
         tokens = Int[];
-        @inbounds for i = 1:size(arr_shortmers,1)
-            for j = 1:size(shortmers,1)
+        @inbounds for i = axes(arr_shortmers,1)
+            for j = axes(shortmers,1)
                 if all((@view arr_shortmers[i,:]) .== (@view shortmers[j,:])) 
                     push!(tokens, j);
                 end

@@ -26,9 +26,8 @@ Output:
 function est_1st_order_markov_bg(vec_str::Vector{String}; laplace=1, F=FloatType)
     singleton_count = Dict(k=>0 for k in alphabets);
     pair_counts = Dict(k=>0 for k in keys(pair_pos));
-    @inbounds for v in vec_str
-        len_v = length(v);
-        for nuc_ind = 1:len_v
+    @inbounds for v in vec_str        
+        for nuc_ind = 1:lastindex(v)
             singleton_count[v[nuc_ind]] += 1;
             len_v != nuc_ind && (pair_counts[@view v[nuc_ind:nuc_ind+1]]+=1;)            
         end
